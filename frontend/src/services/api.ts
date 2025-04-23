@@ -1,9 +1,7 @@
 
-// Base API services for connecting to the backend
 
-const API_URL = 'http://localhost:8000'; // Adjust this to your actual backend URL
+const API_URL = 'http://localhost:8000'; 
 
-// Types
 export interface User {
   id: string;
   username: string;
@@ -35,7 +33,7 @@ export interface Address {
   country: string;
 }
 
-// Auth services
+
 export const authService = {
   signup: async (username: string, email: string, password: string): Promise<User> => {
     const response = await fetch(`${API_URL}/signup`, {
@@ -70,18 +68,12 @@ export const authService = {
   },
   
   logout: async (): Promise<void> => {
-    // If your backend requires logout call
-    // await fetch(`${API_URL}/logout`, {
-    //   method: 'POST',
-    //   credentials: 'include',
-    // });
     
-    // Clear local auth state
     localStorage.removeItem('user');
   }
 };
 
-// Product services
+
 export const productService = {
   addProduct: async (product: Omit<Product, 'id'>): Promise<Product> => {
     const response = await fetch(`${API_URL}/users/productview`, {
@@ -124,7 +116,7 @@ export const productService = {
     const rawProducts = await response.json();
 
     return rawProducts.map((p: any) => ({
-      id: p.Product_ID,                // <-- mapping backend field to your expected frontend type
+      id: p.Product_ID,               
       product_name: p.product_name,
       price: p.price,
       rating: p.rating,
@@ -147,11 +139,11 @@ export const productService = {
   }
 };
 
-// Cart services
+
 export const cartService = {
   addToCart: async (productId: string, quantity: number = 1): Promise<CartItem> => {
     const response = await fetch(`${API_URL}/cart/add/${productId}?quantity=${quantity}`, {
-      method: 'GET', // Based on the route list, this uses GET
+      method: 'GET',
       credentials: 'include',
     });
     
@@ -165,7 +157,7 @@ export const cartService = {
   
   removeFromCart: async (productId: string): Promise<void> => {
     const response = await fetch(`${API_URL}/cart/remove/${productId}`, {
-      method: 'GET', // Based on the route list, this uses GET
+      method: 'GET', 
       credentials: 'include',
     });
     
@@ -190,7 +182,7 @@ export const cartService = {
   
   checkout: async (): Promise<any> => {
     const response = await fetch(`${API_URL}/cart/checkout`, {
-      method: 'GET', // Based on the route list, this uses GET
+      method: 'GET',
       credentials: 'include',
     });
     
@@ -204,7 +196,7 @@ export const cartService = {
   
   buyProducts: async (): Promise<any> => {
     const response = await fetch(`${API_URL}/users/productview/buy`, {
-      method: 'GET', // Based on the route list, this uses GET
+      method: 'GET', 
       credentials: 'include',
     });
     
@@ -217,7 +209,6 @@ export const cartService = {
   }
 };
 
-// Address services
 export const addressService = {
   addAddress: async (address: Omit<Address, 'id'>): Promise<Address> => {
     const response = await fetch(`${API_URL}/address`, {
@@ -269,7 +260,7 @@ export const addressService = {
   
   deleteAddress: async (addressId: string): Promise<void> => {
     const response = await fetch(`${API_URL}/address/${addressId}`, {
-      method: 'GET', // Based on the route list, this uses GET for delete
+      method: 'GET', 
       credentials: 'include',
     });
     

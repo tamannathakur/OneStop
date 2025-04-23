@@ -16,14 +16,14 @@ export default function Products() {
         const data = await productService.getAllProducts();
         console.log(data);  
         const mappedProducts = data.map((item: any) => ({
-          id: item.Product_ID,          // Map the backend Product_ID to 'id'
-          name: item.product_name,      // Map the backend product_name to 'name'
-          description: '',              // You may want to add a description field or leave it empty
-          price: item.price,            // Map the price as is
-          image: item.image,            // Map the image as is
+          id: item.Product_ID,          
+          name: item.product_name,      
+          description: '',              
+          price: item.price,            
+          image: item.image,            
         }));
 
-        setProducts(mappedProducts);  // Set the mapped products in state
+        setProducts(mappedProducts); 
         setError(null);
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Failed to fetch products';

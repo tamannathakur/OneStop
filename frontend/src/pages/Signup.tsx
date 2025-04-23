@@ -19,7 +19,6 @@ export default function Signup() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  // Validate password before submitting
   const validatePassword = () => {
     if (password !== confirmPassword) {
       setPasswordError('Passwords do not match');
@@ -33,7 +32,6 @@ export default function Signup() {
     return true;
   };
 
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -59,17 +57,14 @@ export default function Signup() {
         throw new Error(data.error || 'Signup failed');
       }
 
-      // Handle successful signup (get token and store it)
       const data = await response.json();
-      const token = data.token; // Assuming the backend sends the token
+      const token = data.token; 
 
-      // Store the token (in localStorage or sessionStorage)
-      localStorage.setItem('authToken', token);  // or sessionStorage.setItem('authToken', token)
+      localStorage.setItem('authToken', token);  
 
-      // Redirect to the login page after successful signup
       navigate('/login');
     } catch (error) {
-      // Set error message if signup fails
+      
       setError('Signup failed: ' + error.message);
     } finally {
       setIsLoading(false);
