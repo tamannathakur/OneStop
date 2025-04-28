@@ -2,6 +2,8 @@
 
 **One Stop** is a full-stack e-commerce web application built with a Go backend and a React frontend. It allows users to browse, search, and purchase products, manage carts, addresses, and checkout seamlessly.
 
+https://github.com/user-attachments/assets/a895fd37-0fe1-4c14-9fc1-943da305383e
+
 ---
 
 ## 🚀 Getting Started
